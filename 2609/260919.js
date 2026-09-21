@@ -1,3 +1,4 @@
+//整数の配列numbersと整数targetを受け取り、配列の中から異なる2つの要素を足してtargetになる組み合わせが存在するかを判定する関数hasPairWithSumを作る
 const hasPairWithSum = (numbers, target) => {
  for (let i = 0; i<numbers.length; i++) {
   for (let j = i + 1; j<numbers.length; j++) {

@@ -1,3 +1,4 @@
+//数値の配列を受け取り、偶数が連続している部分のうち、最も長い連続回数を返すlongestEvenStreak関数を作ってください。
 // const longestEvenStreak = (numbers) => {
 //  let count = 0;
 //  let countNumbers = [];
