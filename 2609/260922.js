@@ -1,18 +1,12 @@
 const isPalindrome = (text) => {
- let center = text.length / 2;
- let text1 = '';
- let text2 = '';
-  for (let i = 0; i < center; i++) {
-   text1 = text1 + text[i]
-  }
-  for (let j = text.length - 1; j > center; j--) {
-   text2 = text2 + text[j]
-  }
-  if (text1 === text2) {
-    return true
-  } else { 
+ let lastNumber = text.length - 1;
+ let centerNumber = Math.floor(text.length / 2);
+  for (let i = 0; i < centerNumber; i++) {
+   if (text[i] !== text[lastNumber - i]) {
     return false
   }
+ } 
+ return true;
 };
 
 console.log(isPalindrome("level"));
