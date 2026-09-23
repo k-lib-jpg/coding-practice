@@ -1,3 +1,4 @@
+//文字列textを受け取り、その文字列が**回文（Palindrome）**ならtrue、そうでなければfalseを返すisPalindrome関数を作ってください。
 const isPalindrome = (text) => {
  let lastNumber = text.length - 1;
  let centerNumber = Math.floor(text.length / 2);
