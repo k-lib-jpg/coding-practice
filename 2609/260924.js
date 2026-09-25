@@ -1,32 +1,19 @@
 //2つの整数配列numbers1とnumbers2を受け取り、両方の配列に存在する数字を、重複なしで返すgetIntersection関数を作ってください。
-// const getIntersection = (number1, number2) => {
-//  let result = [];
-//  let isFound = false;
-//  for (let i = 0; i < number1.length; i++) {
-//   for (let j = 0; j < number2.length; j++) {
-//     if (number1[i] === number2[j] && isFound === false) {
-//      result.push(number1[i])
-//      isFound = true;
-//     }
-//     for (let k = 0; k < result.length; k++) {
-//       if (j === number2.length - 1 && number1[i] !== number1[i + 1]) {
-//         isFound = false;
-//       } 
-//     }
-//   }
-//  }
-//  return result;
-// };
-
 const getIntersection = (number1, number2) => {
  let result = [];
- let isFound = false;
  for (let i = 0; i < number1.length; i++) {
-  for (let j = 0; j < result.length; j++) {
-    if (number1[i] === result[j]) {
-
+  let isFound = false;
+  for (let k = 0; k < result.length; k++) {
+      if (number1[i] === result[k]) {
+      isFound = true;
+      break;
+      }
     }
-    if (number1[i] === number2)
+  for (let j = 0; j < number2.length; j++) {
+    if (isFound === false && number1[i] === number2[j]) {
+    result.push(number1[i])
+    break
+    }
   }
  }
  return result;
@@ -71,3 +58,26 @@ console.log(
   )
 );
 // []
+
+//模範解答
+// for (let i = 0; i < number1.length; i++) {
+//   let isFound = false;
+
+//   for (let k = 0; k < result.length; k++) {
+//     if (number1[i] === result[k]) {
+//       isFound = true;
+//       break;
+//     }
+//   }
+
+//   if (isFound) {
+//     continue;
+//   }
+
+//   for (let j = 0; j < number2.length; j++) {
+//     if (number1[i] === number2[j]) {
+//       result.push(number1[i]);
+//       break;
+//     }
+//   }
+// }
