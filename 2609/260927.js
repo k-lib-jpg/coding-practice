@@ -1,14 +1,15 @@
+//整数配列numbersを受け取り、同じ数字が連続している部分を1つにまとめた配列を返すremoveConsecutiveDuplicates関数を作ってください。
 const removeConsecutiveDuplicates = (numbers) => {
-  //数字を格納するための空配列nuNumを用意する
-  let nuNum = [];
+  //数字を格納するための空配列resultを用意する
+  let result = [];
   for (let i = 0; i < numbers.length; i++) {
   //隣の数字が異なる場合数字を格納する
     if (numbers[i] !== numbers[i + 1]) {
-     nuNum.push(numbers[i])
+     result.push(numbers[i])
     }
   }
-  //nuNumの最後の数字
-  return nuNum;
+  //resultの最後の数字
+  return result;
 }
 
 console.log(
