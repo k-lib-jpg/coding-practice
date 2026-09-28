@@ -23,6 +23,6 @@ console.log(
 // 3
 
 console.log(
-  maxProfit([])
+  maxProfitTs([])
 );
 // 0
