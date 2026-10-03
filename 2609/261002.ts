@@ -1,14 +1,13 @@
-// 文字列の配列wordsを受け取り、最も多く登場する単語を返すmostFrequentWordを作ってください。
-const mostFrequentWord = (words) => {
+const mostFrequentWordTs = (words: string[]): string | undefined => {
 //wordsが空配列であればundefinedを返す
  if (words.length === 0) {
   return undefined;
  }
 //Mapオブジェクトをインスタンス化する
- const counts = new Map();
+ const counts = new Map<string, number>();
 //単語の出現回数をカウントする
  let maxCount = 0;
- let mostFrequentWords = '';
+ let mostFrequentWords: string | undefined = '';
  for (const countWord of words) {
     // ① 現在の回数を取得する
     const oldCount = counts.get(countWord) ?? 0;
@@ -27,7 +26,7 @@ const mostFrequentWord = (words) => {
 };
 
 console.log(
-  mostFrequentWord([
+  mostFrequentWordTs([
     "apple",
     "banana",
     "apple",
@@ -39,7 +38,7 @@ console.log(
 // "apple"
 
 console.log(
-  mostFrequentWord([
+  mostFrequentWordTs([
     "cat",
     "dog",
     "dog",
@@ -48,23 +47,3 @@ console.log(
   ])
 );
 // "dog"
-
-console.log(
-  mostFrequentWord([
-    "red",
-    "blue",
-    "red",
-    "blue"
-  ])
-);
-// "red"
-
-console.log(
-  mostFrequentWord(["hello"])
-);
-// "hello"
-
-console.log(
-  mostFrequentWord([])
-);
-// undefined
