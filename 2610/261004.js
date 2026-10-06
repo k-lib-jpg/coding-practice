@@ -1,3 +1,4 @@
+// 数値の配列numbersと数値targetを受け取り、合計がtargetになる2つの数値のインデックスを返すtwoSumを作ってください。
 const twoSum = (numbers, target) => {
  //Map()をインスタンス化する
  const addNumber = new Map();
