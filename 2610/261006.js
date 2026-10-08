@@ -5,7 +5,7 @@ const firstDuplicate = (numbers) => {
   let duplicateNum = seen.has(numbers[i]);
   seen.add(numbers[i]);
   if (duplicateNum === true) {
-    return numbers[i]
+    return numbers[i];
   }
  }
  return undefined;
