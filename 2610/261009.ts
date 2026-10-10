@@ -1,10 +1,13 @@
-// 商品の在庫を表す配列 stocks と、注文された商品IDの配列 orders を受け取り、在庫がある注文だけを受け付ける processOrders を作ってください。
-// 在庫がない商品の注文は無視します。
-const processOrders = (stocks, orders) => {
+type Stock = {
+  id: string,
+  quantity: number,
+}
+
+const processOrdersTs = (stocks: Stock[], orders: string[]): string[]  => {
  //注文する商品を格納する配列を宣言する
- const products = [];
+ const acceptedOrders: string[] = [];
  //在庫を記録する
- const currentStocks = new Map();
+ const currentStocks = new Map<string, number>();
  for (const stock of stocks) {
   currentStocks.set(stock.id, stock.quantity)
  };
@@ -12,16 +15,16 @@ const processOrders = (stocks, orders) => {
  for (const order of orders) {
   const remaining = currentStocks.get(order) ?? 0;
   if (remaining >= 1) {
-  products.push(order);
+  acceptedOrders.push(order);
   const decreasing = remaining - 1;
   currentStocks.set(order, decreasing);
   }
 }
- return products;
+ return acceptedOrders;
 };
 
 console.log(
-  processOrders(
+  processOrdersTs(
     [
       { id: "A", quantity: 2 },
       { id: "B", quantity: 1 },
@@ -33,7 +36,7 @@ console.log(
 // ["A", "B", "A"]
 
 console.log(
-  processOrders(
+  processOrdersTs(
     [
       { id: "X", quantity: 1 },
       { id: "Y", quantity: 2 }
@@ -42,24 +45,3 @@ console.log(
   )
 );
 // ["Y", "X", "Y"]
-
-console.log(
-  processOrders(
-    [{ id: "A", quantity: 1 }],
-    ["B", "A", "B"]
-  )
-);
-// ["A"]
-
-console.log(
-  processOrders([], ["A", "B"])
-);
-// []
-
-console.log(
-  processOrders(
-    [{ id: "A", quantity: 3 }],
-    []
-  )
-);
-// []
