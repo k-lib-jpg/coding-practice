@@ -1,13 +1,20 @@
 // ECサイトの購入履歴を表す配列ordersを受け取り、ユーザーごとの購入金額の合計を計算するcalculateUserTotalsを作ってください。
 // ただし、キャンセルされた注文は集計しません。
 const calculateUserTotals = (orders) => {
- const orderInfo = new Map();
+ const result = [];
+ const orderContents = new Map();
  for (const order of orders) {
-  if (orders.status === "canceled") {
-    
+  if (order.status === "completed") {
+   const orderTotal = order.price * order.quantity;
+   const currentTotal = orderContents.get(order.userId) ?? 0;
+   orderContents.set(order.userId, currentTotal + orderTotal)
   }
- }
-};
+ };
+ for (const [userId, total] of orderContents) {
+  result.push({ userId, total });
+  }
+ return result;
+}
 
 console.log(
   calculateUserTotals([
