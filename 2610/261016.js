@@ -10,19 +10,33 @@ const products = [
 
 const searchProducts = (products, conditions) => {
  const result = [];
-//検索条件の確認
  for (const product of products) {
-
- }
-//条件に一致する商品を抽出する
-
-//価格順に並び替える
- const productCost = result.sort((a, b) => {
-  if (a.totalSales === b.totalSales) {
-    return a.productId.localeCompare(b.productId);
+  // ① カテゴリが一致しなければスキップ
+  if (conditions.category !== undefined && product.category !== conditions.category) {
+    continue;
   }
-  return b.totalSales - a.totalSales;
+  if (conditions.minPrice !== undefined && product.price < conditions.minPrice) {
+    continue;
+  }
+  // 最高価格が指定されていて、それより高い場合は除外
+  if (conditions.maxPrice !== undefined && product.price > conditions.maxPrice) {
+    continue;
+  }
+  // ④ 在庫条件を満たさなければスキップ
+  if (conditions.inStockOnly && !product.inStock) {
+    continue;
+  }
+  // ⑤ すべての条件を満たした商品を追加
+  result.push(product);
+    }
+ //価格順に並び替える
+ const productCost = result.sort((a, b) => {
+  if (a.price === b.price) {
+    return a.id.localeCompare(b.id);
+  }
+  return a.price - b.price;
  })
+ return productCost;
 };
 
 console.log(searchProducts(products, {
