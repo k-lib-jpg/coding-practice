@@ -1,3 +1,5 @@
+export{}
+
 type OrderStatus = "completed" | "cancelled";
 
 type OrderItem = {
