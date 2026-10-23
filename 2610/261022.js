@@ -12,20 +12,35 @@ const orders = [
 
 const calculateCustomerStats = (orders) => {
   // Idごとにまとめる
-  const orderInfo = new Map();
-  const result = [];
-  // for文でオブジェクトごとにまとめる
+  const orderInfoMap = new Map();
   for (const order of orders) {
-    const newTotalSpent = order.amount;
-    const oldTotalSpent = ;
-    const newOrderCount = ;
-    const oldOrderCount = ;
-    orderInfo.set(customerId, {
-      totalSpent: newTotalSpent + oldTotalSpent,
-      orderCount: newOrderCount + oldOrderCount,
-    })
+    // Mapに何も存在しなければ初期データを登録
+    if (!orderInfoMap.has(order.customerId)) {
+      orderInfoMap.set(order.customerId, {
+        totalSpent: 0,
+        orderCount: 0
+      });
+    }
+    // 顧客の集計データを取得
+    const customer = orderInfoMap.get(order.customerId);
+    // totalSpentにorderTotalを加算する
+    // totalItemsにitemCountを加算する
+    // orderCountを1増やす
+    customer.totalSpent += order.amount;
+    customer.orderCount += 1;
+    
   }
-  // 数列に出力する
+  // Mapを配列に変換する
+  const result = [];
+  for (const [customerId, data] of orderInfoMap) {
+    result.push({
+      customerId,
+      totalSpent: data.totalSpent,
+      orderCount: data.orderCount
+    });
+  }
+  // 結果を返す
+  return result;
 };
 
 console.log(calculateCustomerStats(orders));
