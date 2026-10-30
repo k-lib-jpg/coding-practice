@@ -30,18 +30,19 @@ for (const order of orders) {
   // ④ 内側のfor...ofでremainingProductsを1件ずつ取り出す
   for (const remainingProduct of remainingProducts) {
     // ⑤ order.productIdとproduct.productIdが一致するか確認する
-      
-    // ⑥ 一致した商品の在庫数が注文数量以上か確認する
-
-    // ⑦ 在庫が足りている場合、注文情報を結果の配列に追加する
-
-    // ⑧ 注文を受け付けた商品の在庫数から注文数量を減らす
-
-    // ⑨ 商品IDが一致したら、在庫が足りているかどうかに関係なく内側のループを終了する
-  }
-  
-} 
-
-
-// ⑩ すべての注文を確認したら、結果の配列をreturnする
+      if (order.productId === remainingProduct.productId) {
+        // ⑥ 一致した商品の在庫数が注文数量以上か確認する
+        // ⑦ 在庫が足りている場合、注文情報を結果の配列に追加する
+          if (order.quantity <= remainingProduct.stock) {
+            orderInfo.push({productId: remainingProduct.productId, name: remainingProduct.name, quantity:order.quantity});
+            // ⑧ 注文を受け付けた商品の在庫数から注文数量を減らす
+            remainingProduct = remainingProduct.stock - order.quantity; 
+        }
+        // ⑨ 商品IDが一致したら、在庫が足りているかどうかに関係なく内側のループを終了する
+        break;
+      }
+   }
+  } 
+ // ⑩ すべての注文を確認したら、結果の配列をreturnする
+ return orderInfo;
 };
