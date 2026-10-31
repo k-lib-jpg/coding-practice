@@ -36,7 +36,7 @@ for (const order of orders) {
           if (order.quantity <= remainingProduct.stock) {
             orderInfo.push({productId: remainingProduct.productId, name: remainingProduct.name, quantity:order.quantity});
             // ⑧ 注文を受け付けた商品の在庫数から注文数量を減らす
-            remainingProduct = remainingProduct.stock - order.quantity; 
+            remainingProduct.stock -= order.quantity; 
         }
         // ⑨ 商品IDが一致したら、在庫が足りているかどうかに関係なく内側のループを終了する
         break;
@@ -46,3 +46,5 @@ for (const order of orders) {
  // ⑩ すべての注文を確認したら、結果の配列をreturnする
  return orderInfo;
 };
+
+console.log(processOrders(products, orders));
