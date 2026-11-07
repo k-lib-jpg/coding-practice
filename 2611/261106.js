@@ -5,9 +5,9 @@ const findShortestSubarray = (numbers, target) => {
   let sum = 0;
   for (let end = 0; end < numbers.length; end++) {
     sum += numbers[end];
-    length = end - start + 1;
     while (sum >= target) {
-      if (shortest.length > length) {
+      const length = end - start + 1;
+      if (shortest === null || shortest.length > length ) {
         shortest = {start: start, end: end, sum: sum, length: length};
       }
       sum -= numbers[start];
