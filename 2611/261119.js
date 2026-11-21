@@ -1,3 +1,4 @@
+// 文字列strを受け取り、括弧の対応が正しい場合はtrue、正しくない場合はfalseを返す関数isValidParenthesesを作成してください。
 const isValidParentheses = (str) => {
   // スタックの空配列を作る
   const stack = [];
