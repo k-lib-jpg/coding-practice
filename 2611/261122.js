@@ -5,18 +5,20 @@ const nextGreaterElements = (numbers) => {
   // 空のstackの配列を作る
   const stack = [];
   // 最後に返す配列を作る
-  const result = Array(5).fill(-1);
-  // numbersの数分for文でループする
+  const result = Array(numbers.length).fill(-1);
+  // numbersの長さの分ループする
   for (let i = 0; i < numbers.length; i++) {
-    // 大きな数が出るまでインデックスをスタックする
-    if (numbers[i] <= numbers[i-1]) {
-      
-    }
-    // 大きな数が出たらスタックに数字がある間、スタックから数字を出し続けて、resultの配列を変化させる
+      // スタックに数字があり、かつスタックの末尾の数より現在の数が大きければ、スタックから数字を出し続けてresultの配列を変化させる
+      while (stack.length !== 0 && numbers[i] > numbers[stack[stack.length - 1]]) {
+        const index = stack.pop();
+        result[index] = numbers[i];
+      }
 
+      // インデックスをスタックする
+      stack.push(i);
   }
-  // スタックに保存された
-  return arr;
+  // resultを返す
+  return result;
 };
 
 console.log(nextGreaterElements([2, 1, 5, 6, 3, 7]));
