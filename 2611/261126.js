@@ -1,10 +1,23 @@
+// 毎日の株価を格納した整数配列pricesを受け取り、それぞれの日について、当日を含め、当日の株価以下の日が過去に何日連続しているかを求める関数calculateStockSpanを作成してください。
 const calculateStockSpan = (prices) => {
   // スタックの空配列を作る
+  const stack = [];
   // 株価のデータ数分、1で初期化した結果配列を作る
-  // pricesのデータの数の分ループする
-  // スタックが空ではなく、現在の株価がスタック末尾に対応する温度より高い間、処理を繰り返す
-  // 
+  const result = Array(prices.length).fill(1); 
+  // pricesのデータ数分ループする
+  for (let i = 0; i < prices.length; i++) {
+    // スタックが空ではなく、現在の株価がスタック末尾に対応する株価以上である間、処理を繰り返す
+    while (stack.length !== 0 && prices[i] >= prices[stack[stack.length - 1]]) {
+      // スタック末尾のインデックスをpopする
+      const index = stack.pop();
+      // popしたインデックスに対応する株価スパンを現在のインデックスの結果に加算する
+      result[i] += result[index];
+    }
+    // 現在のインデックスをスタックにpushする
+    stack.push(i);
+  }
   // resultを返す
+  return result;
 };
 
 console.log(calculateStockSpan([100, 80, 60, 70, 60, 75, 85]));
